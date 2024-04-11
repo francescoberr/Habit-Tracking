@@ -3,10 +3,12 @@ from tkinter import ttk
 #from tkinter import messagebox
 from model import Habit
 
+# Grouping into HabitView class the creation of the view.
 class HabitView(tkinter.Tk):
     def __init__(self):
         super().__init__()
         self.title("Habit Tracking App")
+        self.geometry("600x500")
 
         frame = tkinter.Frame(self)
         frame.pack()
@@ -48,39 +50,59 @@ class HabitView(tkinter.Tk):
 
         # --- End Habit Creation Outer Frame ---
 
-        # --- Start Habit Completion Frame ---
+        # --- Start Habit Tracking Frame ---
 
-        habit_completion_frame = tkinter.LabelFrame(frame, text="Here you can mark an habit \"complete\"", borderwidth=5)
-        habit_completion_frame.grid(row=1, column=0, padx=20, pady=10, sticky="news", columnspan=2)
+        habit_tracking_frame = tkinter.LabelFrame(frame, text="Here you can keep track of your habits", borderwidth=5)
+        habit_tracking_frame.grid(row=1, column=0, padx=20, pady=10, sticky="news", columnspan=2)
 
-        completed_habit_label = tkinter.Label(habit_completion_frame, text="Name", font='Helvetica 12 bold')
-        completed_habit_label.grid(row=0, column=0)
-        completed_habit_entry = tkinter.Entry(habit_completion_frame)
-        completed_habit_entry.grid(row=1, column=0, pady=5)
+        tracking_habit_label = tkinter.Label(habit_tracking_frame, text="Name", font='Helvetica 12 bold')
+        tracking_habit_label.grid(row=0, column=0)
+        tracking_habit_entry = tkinter.Entry(habit_tracking_frame)
+        tracking_habit_entry.grid(row=1, column=0, pady=5)
 
-        completed_checkbox_label = tkinter.Label(habit_completion_frame, text="Completed?", font='Helvetica 12 bold')
-        completed_checkbox_label.grid(row=0, column=1)
-        completed_var = tkinter.StringVar(value="Not Completed")
-        completed_checkbox = tkinter.Checkbutton(habit_completion_frame, text="I've completed this habit", variable=completed_var, onvalue="Completed", offvalue="Not Completed")
-        completed_checkbox.grid(row=1, column=1, pady=5)
+        tracking_checkbox_label = tkinter.Label(habit_tracking_frame, text="Completed today/this week?", font='Helvetica 12 bold')
+        tracking_checkbox_label.grid(row=0, column=1)
+        tracking_var = tkinter.StringVar(value="Not Completed")
+        tracking_checkbox = tkinter.Checkbutton(habit_tracking_frame, text="Completed", variable=tracking_var, onvalue="Completed", offvalue="Not Completed")
+        tracking_checkbox.grid(row=1, column=1, pady=5)
 
-        for widget in habit_completion_frame.winfo_children():
+        for widget in habit_tracking_frame.winfo_children():
             widget.grid_configure(padx=20)
 
-            # --- Start Inner Habit Completion Frame ---
-        submit_button_frame = tkinter.LabelFrame(habit_completion_frame)
+            # --- Start Inner Habit Tracking Frame ---
+        submit_button_frame = tkinter.LabelFrame(habit_tracking_frame)
         submit_button_frame.grid(row=2, column=0, sticky="news", columnspan=2)
 
         submit_complete = tkinter.Button(submit_button_frame, text="SUBMIT")
         submit_complete.grid(row=0, pady=5, padx=182)
-            # --- End Inner Habit Completion Frame ---
+            # --- End Inner Habit Tracking Frame ---
 
-        # --- End Habit Completion Frame ---
+        # --- End Habit Tracking Frame ---
+
+        # --- Start Drop an Habit Frame ---
+
+        habit_drop_frame = tkinter.LabelFrame(frame, text="Here you can drop an habit", borderwidth=5)
+        habit_drop_frame.grid(row=2, column=0, padx=20, pady=10, sticky="news", columnspan=2)
+        
+        drop_name_habit_label = tkinter.Label(habit_drop_frame, text="Name", font='Helvetica 12 bold')
+        drop_name_habit_label.grid(row=0, column=0)
+        drop_name_habit_entry = tkinter.Entry(habit_drop_frame)
+        drop_name_habit_entry.grid(row=1, column=0, pady=5)
+
+        drop_habit_label = tkinter.Label(habit_drop_frame, text="Drop it?", font='Helvetica 12 bold')
+        drop_habit_label.grid(row=0, column=1)
+        drop_habit_button = tkinter.Button(habit_drop_frame, text="Drop it!")
+        drop_habit_button.grid(row=1, column=1, pady=5)
+
+        for widget in habit_drop_frame.winfo_children():
+            widget.grid_configure(padx=35)
+
+        # --- End Drop an Habit Frame ---
 
         # --- Start Habit Analysis Frame ---
 
         habit_analysis_frame = tkinter.LabelFrame(frame, text="Here you can analyze your habits", borderwidth=5)
-        habit_analysis_frame.grid(row=2, column=0, padx=20, pady=10, sticky="news", columnspan=2)
+        habit_analysis_frame.grid(row=3, column=0, padx=20, pady=10, sticky="news", columnspan=2)
 
         currently_tracked_button = tkinter.Button(habit_analysis_frame, text="Currently Tracked Habits")
         currently_tracked_button.grid(row=0, column=0)

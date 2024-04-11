@@ -6,3 +6,6 @@ class Habit:
         self.habit_type = habit_type
         self.date = date or datetime.now()  # Current date if it's not provided
         self.completed = completed
+
+# class HabitDB:
+#     def __init__(self):
