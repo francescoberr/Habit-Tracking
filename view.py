@@ -85,12 +85,12 @@ class HabitView(tkinter.Tk):
         end_habit_name_entry.grid(row=1, column=0, pady=5)
 
         end_habit_button_label = ttk.Label(end_habit_frame, text="Drop it?", font='Helvetica 12 bold')
-        end_habit_button_label.grid(row=0, column=1)
+        end_habit_button_label.grid(row=2, column=0)
         end_habit_button = ttk.Button(end_habit_frame, text="Drop it!")
-        end_habit_button.grid(row=1, column=1, pady=5)
+        end_habit_button.grid(row=3, column=0, pady=5)
 
         for widget in end_habit_frame.winfo_children():
-            widget.grid_configure(padx=35)
+            widget.grid_configure(padx=130, pady=10)
 
             
     def analyze_habit_page(self):
