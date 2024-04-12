@@ -13,8 +13,12 @@ class HabitView(tkinter.Tk):
         self.tab_control = ttk.Notebook(self)
         self.tab_control.pack(expand=1, fill="both")
         
-        # --- Start Habit Creation Frame ---
+        self.create_habit_page()
+        self.track_habit_page()
+        self.end_habit_page()
+        self.analyze_habit_page()
 
+    def create_habit_page(self):
         habit_creation_frame = ttk.Frame(self.tab_control)
         self.tab_control.add(habit_creation_frame, text="Create Habit")
 
@@ -47,9 +51,7 @@ class HabitView(tkinter.Tk):
         create_button = tkinter.Button(habit_creation_frame, text="CREATE")
         create_button.grid(row=3, column=0, columnspan=2, pady=5)
 
-        # --- End Habit Creation Outer Frame --
-
-        # --- Start Habit Tracking Frame ---
+    def track_habit_page(self):
 
         habit_tracking_frame = ttk.Frame(self.tab_control)
         self.tab_control.add(habit_tracking_frame, text="Track Habit")
@@ -76,29 +78,26 @@ class HabitView(tkinter.Tk):
         submit_complete.grid(row=0, pady=5, padx=182)
             # --- End Inner Habit Tracking Frame ---
 
-        # --- End Habit Tracking Frame ---
+    def end_habit_page(self):
 
-        # --- Start Habit Drop Frame ---
+        end_habit_frame = ttk.Frame(self.tab_control)
+        self.tab_control.add(end_habit_frame, text="Drop Habit")
 
-        habit_drop_frame = ttk.Frame(self.tab_control)
-        self.tab_control.add(habit_drop_frame, text="Drop Habit")
+        end_habit_name_label = ttk.Label(end_habit_frame, text="Name", font='Helvetica 12 bold')
+        end_habit_name_label.grid(row=0, column=0)
+        end_habit_name_entry = tkinter.Entry(end_habit_frame)
+        end_habit_name_entry.grid(row=1, column=0, pady=5)
 
-        drop_name_habit_label = ttk.Label(habit_drop_frame, text="Name", font='Helvetica 12 bold')
-        drop_name_habit_label.grid(row=0, column=0)
-        drop_name_habit_entry = tkinter.Entry(habit_drop_frame)
-        drop_name_habit_entry.grid(row=1, column=0, pady=5)
+        end_habit_button_label = tkinter.Label(end_habit_frame, text="Drop it?", font='Helvetica 12 bold')
+        end_habit_button_label.grid(row=0, column=1)
+        end_habit_button = tkinter.Button(end_habit_frame, text="Drop it!")
+        end_habit_button.grid(row=1, column=1, pady=5)
 
-        drop_habit_label = tkinter.Label(habit_drop_frame, text="Drop it?", font='Helvetica 12 bold')
-        drop_habit_label.grid(row=0, column=1)
-        drop_habit_button = tkinter.Button(habit_drop_frame, text="Drop it!")
-        drop_habit_button.grid(row=1, column=1, pady=5)
-
-        for widget in habit_drop_frame.winfo_children():
+        for widget in end_habit_frame.winfo_children():
             widget.grid_configure(padx=35)
 
-        # --- End Habit Drop Frame
             
-        # --- Start Habit Analysis Frame ---
+    def analyze_habit_page(self):
             
         habit_analysis_frame = ttk.Frame(self.tab_control)
         self.tab_control.add(habit_analysis_frame, text="Analyze Habit")
@@ -117,5 +116,3 @@ class HabitView(tkinter.Tk):
 
         for widget in habit_analysis_frame.winfo_children():
             widget.grid_configure(padx=20, pady=5)
-
-        # --- End Habit Analysis Frame ---
